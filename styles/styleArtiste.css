@@ -1,0 +1,214 @@
+/* --- RESET GLOBAL --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-left: 50px;
+    margin-right: 75px;
+    margin-top: 130px; 
+    background-color: rgb(250, 250, 250);
+    font-family: Arial, sans-serif;
+}
+
+/* --- HEADER FIXE --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+header h1 {
+    margin: 0;
+    flex: 1; /* Le titre prend 1 part d'espace à gauche */
+}
+
+header h1 a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Georgia', serif; 
+    font-size: 32px;
+}
+
+header h1 a:hover 
+{
+    color: red;
+    transition: transform ease-in-out 0.3s;
+}
+
+header nav {
+    flex: 2; /* Le menu prend 2 parts d'espace au centre (plus large pour éviter de pousser la recherche) */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.bandeau {
+    color: black;
+    text-decoration: none;
+    font-family: 'Georgia', serif; 
+    font-size: 16px;
+    white-space: nowrap; /* Empêche les liens du menu de se casser sur deux lignes */
+}
+
+.bandeau:hover {
+    text-decoration: underline;
+}
+
+.actions-header {
+    flex: 1; /* Les actions prennent 1 part d'espace à droite (équivalent au titre) */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px; /* Espace fixe entre la recherche et le panier */
+    min-width: max-content; /* Force la zone à ne pas se compresser */
+}
+
+.conteneur-recherche {
+    display: flex;
+    align-items: center;
+}
+
+#barre-recherche {
+    font-size: 14px;
+    width: 200px; /* Légèrement réduit pour être sûr que tout passe */
+    height: 40px;
+    padding: 0 12px;
+    color: rgb(90, 94, 107);
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.btn-recherche {
+    height: 40px;
+    width: 45px;
+    background-color: #333; 
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; 
+    font-size: 10px;
+}
+
+.conteneur-panier {
+    display: flex;
+    align-items: center;
+}
+
+.btn-panier {
+    height: 40px;
+    width: 40px;
+    background-color: #333; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white; 
+    font-size: 10px;
+}
+
+.conteneur-panier a:hover, .btn-recherche a:hover
+{
+    background-color : red;
+    transition: transform 0.5s ease;
+}
+
+.icone-btn, .icone-panier {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+/* --- SECTIONS ET TITRES --- */
+.entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.entete h2 {
+    margin: 0;
+    font-family: 'Georgia', serif;
+}
+
+/* --- GRILLE ARTISTES --- */
+.grille-artistes {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 40px; 
+    margin-bottom: 40px;
+}
+
+.grille-artistes .bloc {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    /* On ajuste le padding pour que l'image touche presque les bords du bloc, donnant l'aspect "polaroid" */
+    padding: 25px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.grille-artistes .bloc:hover {
+    transform: translateY(-5px);
+}
+
+.photo {
+    width: 100%; /* L'image force le bloc à s'élargir */
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 5px; 
+    margin-bottom: 15px;
+    max-width: 280px; 
+}
+
+.grille-artistes h3 
+{
+    padding: 10px;
+    margin: 0;
+}
+
+.grille-artistes h3 a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px; 
+}
+
+.grille-artistes h3 a:hover {
+    text-decoration: underline;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+    padding: 1.5em;
+    margin-top: 3em;
+    border-top: 1px solid #e0e0e0;
+    margin-left: -50px;
+    margin-right: -75px;
+}
