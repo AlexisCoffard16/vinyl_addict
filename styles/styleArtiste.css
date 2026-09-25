@@ -105,7 +105,8 @@ header nav {
     font-size: 10px;
 }
 
-.conteneur-panier {
+.conteneur-panier, .conteneur-ariane
+{
     display: flex;
     align-items: center;
 }
@@ -129,7 +130,8 @@ header nav {
     transition: transform 0.5s ease;
 }
 
-.icone-btn, .icone-panier {
+.icone-btn, .icone-panier, .icone-accueil
+{
     width: 20px;
     height: 20px;
     object-fit: contain;
