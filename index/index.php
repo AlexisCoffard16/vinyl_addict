@@ -30,7 +30,6 @@ $favoris  = $rqFavori->fetchAll(PDO::FETCH_ASSOC);
     
     <nav class="menu-principal">
         <a href="coups-de-coeur.html" class="bandeau">Nos Coups de Coeur</a>
-        <a href="genres.html" class="bandeau">Genres</a>
         <a href="artiste.php" class="bandeau">Artistes</a>
         <a href="vinyles.html" class="bandeau">Nos Vinyles</a>
     </nav>
@@ -77,22 +76,22 @@ $favoris  = $rqFavori->fetchAll(PDO::FETCH_ASSOC);
         <button id="btn-droite">→</button>
     </div>
 </div>
-
+<!---
 <div>
     <div class="entete">
         <h2> Genres :</h2>
         <a href="genres.html" class="lien-voir">Voir tous les genres</a>
     </div>
     <div class="grille-genres">
-        <?php foreach ($genres as $genre) { ?>
+        <?php /* foreach ($genres as $genre) { */?>
         <div class="bloc">
             <h3>
-                <a href="detail-genre.php?id=<?php echo urlencode($genre['genre']); ?>"><?php echo htmlspecialchars($genre['genre']); ?></a>
+                <a href="detail-genre.php?id=<?php /*echo urlencode($genre['genre']); */?>"><?php /*echo htmlspecialchars($genre['genre']); */ ?></a>
             </h3>
         </div>
-        <?php } ?>
+        <?php /*} */?> */
     </div>
-</div>
+</div> -->
 
 <div>
     <div class="entete">

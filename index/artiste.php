@@ -48,6 +48,16 @@ $artistes = $rqArtistes->fetchAll(PDO::FETCH_ASSOC);
 </header>
 
 <div>
+    <div class="conteneur-ariane">
+        <button class="btn-accueil" href="index.html">
+            <img src="../images/icones/icone-accueil.png" class="icone-accueil" alt="Retourner à l'accueil">
+        </button>
+
+    </div>
+
+</div>
+
+<div>
     <div class="entete">
         <h2> Artistes :</h2>
     </div>
