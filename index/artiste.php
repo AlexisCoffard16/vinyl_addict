@@ -15,7 +15,7 @@ $artistes = $rqArtistes->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="Author" lang="fr" content="Alexis COFFARD" />
-    <link rel="stylesheet" href="../styles/styleArtiste.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/style.css" type="text/css" />
     <script src="../scripts/script.js" type="text/javascript"></script>
     <title>Accueil</title>
 </head>
@@ -26,7 +26,6 @@ $artistes = $rqArtistes->fetchAll(PDO::FETCH_ASSOC);
     
     <nav class="menu-principal">
         <a href="coups-de-coeur.html" class="bandeau">Nos Coups de Coeur</a>
-        <a href="genres.html" class="bandeau">Genres</a>
         <a href="artistes.html" class="bandeau">Artistes</a>
         <a href="vinyles.html" class="bandeau">Nos Vinyles</a>
     </nav>
@@ -49,10 +48,11 @@ $artistes = $rqArtistes->fetchAll(PDO::FETCH_ASSOC);
 
 <div>
     <div class="conteneur-ariane">
-        <button class="btn-accueil" href="index.html">
-            <img src="../images/icones/icone-accueil.png" class="icone-accueil" alt="Retourner à l'accueil">
+        <button class="btn-accueil">
+            <a href="index.php"><img src="../images/icones/icone-accueil.png" class="icone-accueil" alt="Retourner à l'accueil"></a>
         </button>
-
+        <img src="../images/icones/icone-fleche.png" class="icone-fleche" alt="Flèche">
+        <h4>Artiste</h4>
     </div>
 
 </div>
@@ -66,7 +66,7 @@ $artistes = $rqArtistes->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($artistes as $artiste) { ?>
         <div class="bloc">
             <?php 
-            $cheminImage = !empty($artiste['img_art']) ? $artiste['img_art'] : '../images/artistes-groupes/default.jpg'; 
+            $cheminImage = !empty($artiste['img_art']) ? $artiste['img_art'] : '../images/artistes-groupes/default_artiste.jpg'; 
             ?>
             <img src="<?php echo htmlspecialchars($cheminImage); ?>" alt="Photo de <?php echo htmlspecialchars($artiste['nom_art']); ?>" class="photo">
             

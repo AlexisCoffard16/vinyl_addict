@@ -66,7 +66,7 @@ $favoris  = $rqFavori->fetchAll(PDO::FETCH_ASSOC);
                         if (!empty($favori['img_album'])) 
                             $imgAlbum = '../images/pochettes/' . $favori['img_album'];
                         else 
-                            $imgAlbum = '../images/default.png'; 
+                            $imgAlbum = '../images/default_vinyle.png'; 
                     ?>
                         <img src="<?php echo htmlspecialchars($imgAlbum); ?>" alt="Pochette de <?php echo htmlspecialchars($favori['titre_album']); ?>" class="photo">
                 </div>
@@ -103,7 +103,7 @@ $favoris  = $rqFavori->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($artistes as $artiste) { ?>
         <div class="bloc">
             <?php 
-            $cheminImage = !empty($artiste['img_art']) ? $artiste['img_art'] : '../images/default.png'; 
+            $cheminImage = !empty($artiste['img_art']) ? $artiste['img_art'] : '../images/default_artiste.png'; 
             ?>
             <img src="<?php echo htmlspecialchars($cheminImage); ?>" alt="Photo de <?php echo htmlspecialchars($artiste['nom_art']); ?>" class="photo">
             
