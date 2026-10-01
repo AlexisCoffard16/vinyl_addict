@@ -42,4 +42,31 @@ function carrousel()
     });
 }
 
+function rechercherElement() 
+{
+    // On cible la barre de recherche HTML grâce à son ID
+    const inputRecherche = document.getElementById("barre-recherche");
+
+    // On extrait le texte qui a été tapé à l'intérieur.
+    const requete = inputRecherche.value.trim();
+
+    // On vérifie que la barre n'est pas vide avant de travailler
+    if (requete !== "") 
+    {
+        // encodeURIComponent() est une sécurité : elle transforme les espaces et les accents 
+        // en caractères lisibles pour une URL (un espace devient %20 par exemple).
+        window.location.href = "recherche.php?q=" + encodeURIComponent(requete);
+    }
+
+    // On écoute ce qu'il se passe sur la barre de recherche
+    inputRecherche.addEventListener("keypress", function(event) 
+    {
+        // Si la touche appuyée est "Enter"
+        if (event.key === "Enter") 
+        {
+            rechercherElement(); // On lance notre fonction*
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", carrousel);
