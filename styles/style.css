@@ -117,6 +117,31 @@ header nav {
     filter: invert(1);
 }
 
+.icone-accueil, .icone-fleche
+{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+    /*filter: invert(1);*/
+}
+
+.btn-accueil
+{
+    border : white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.conteneur-ariane
+{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top : 10px;
+    margin-bottom : 10px;
+}
+
 
 /* --- SECTIONS ET TITRES --- */
 .entete {
