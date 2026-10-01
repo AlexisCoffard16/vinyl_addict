@@ -7,8 +7,13 @@ $resultats_artistes = [];
 $resultats_albums = [];
 
 if (!empty($mot_cle)) {
-    // 1. Recherche des Vinyles (Albums) en priorité
-    $stmtAlbums = $pdo->prepare("SELECT id_album, titre_album, img_album FROM Album WHERE titre_album LIKE :recherche");
+    // 1. Recherche des Vinyles
+    $stmtAlbums = $pdo->prepare("
+        SELECT Album.id_album, Album.titre_album, Album.img_album, Artiste.img_art 
+        FROM Album 
+        JOIN Artiste ON Album.id_art = Artiste.id_art 
+        WHERE Album.titre_album LIKE :recherche
+    ");
     $stmtAlbums->execute(['recherche' => '%' . $mot_cle . '%']);
     $resultats_albums = $stmtAlbums->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,23 +65,31 @@ if (!empty($mot_cle)) {
         <h2>Résultats de recherche pour : "<?php echo htmlspecialchars($mot_cle); ?>"</h2>
     </div>
 
-    <!-- Message si strictement RIEN n'a été trouvé -->
+    <!-- Message si rien n'est trouvé -->
     <?php if (empty($resultats_artistes) && empty($resultats_albums) && !empty($mot_cle)): ?>
         <p style="margin-left: 50px;">Aucun résultat ne correspond à votre recherche.</p>
     <?php endif; ?>
 
-    <!-- Affichage des VINYLES (S'il y en a) -->
+    <!-- Affichage des VINYLES -->
     <?php if (!empty($resultats_albums)): ?>
         <div class="entete">
             <h2 style="color: #555; font-size: 16px;">Vinyles trouvés :</h2>
         </div>
-        <div class="grille-artistes"> <!-- On utilise cette classe pour garder le format carré des pochettes -->
+        <div class="grille-artistes"> 
             <?php foreach ($resultats_albums as $album) { ?>
                 <div class="bloc">
                     <?php 
-                    $cheminAlbum = !empty($album['img_album']) ? '../images/pochettes/' . $album['img_album'] : '../images/default_vinyle.png'; 
+                    // On utilise directement la valeur de la base de données
+                    if (!empty($album['img_album'])) 
+                    {
+                        $cheminAlbum = '../images/pochettes/' . $album['img_album'];
+                    } else 
+                    {
+                        $cheminAlbum = '../images/default_vinyle.png'; 
+                    }
                     ?>
-                    <img src="<?php echo htmlspecialchars($cheminAlbum); ?>" alt="Pochette de <?php echo htmlspecialchars($album['titre_album']); ?>" class="photo">
+                    <!-- Le onerror reste là en sécurité si une image a été supprimée ou renommée -->
+                    <img src="<?php echo htmlspecialchars($cheminAlbum); ?>" alt="Pochette de <?php echo htmlspecialchars($album['titre_album']); ?>" class="photo" onerror="this.src='../images/default_vinyle.png';">
                     <h3>
                         <a href="detail-vinyle.php?id=<?php echo $album['id_album']; ?>">
                             <?php echo htmlspecialchars($album['titre_album']); ?>
@@ -87,7 +100,7 @@ if (!empty($mot_cle)) {
         </div>
     <?php endif; ?>
 
-    <!-- Affichage des ARTISTES (S'il y en a) -->
+    <!-- Affichage des ARTISTES -->
     <?php if (!empty($resultats_artistes)): ?>
         <div class="entete" style="margin-top: 40px;">
             <h2 style="color: #555; font-size: 16px;">Artistes trouvés :</h2>
@@ -98,7 +111,8 @@ if (!empty($mot_cle)) {
                     <?php 
                     $cheminArtiste = !empty($artiste['img_art']) ? '../images/artistes-groupes/' . $artiste['img_art'] : '../images/default_artiste.png'; 
                     ?>
-                    <img src="<?php echo htmlspecialchars($cheminArtiste); ?>" alt="Photo de <?php echo htmlspecialchars($artiste['nom_art']); ?>" class="photo">
+                    <!-- Idem, onerror garantit l'affichage de l'image de secours -->
+                    <img src="<?php echo htmlspecialchars($cheminArtiste); ?>" alt="Photo de <?php echo htmlspecialchars($artiste['nom_art']); ?>" class="photo" onerror="this.src='../images/default_artiste.png';">
                     <h3>
                         <a href="artiste.php?id=<?php echo $artiste['id_art']; ?>">
                             <?php echo htmlspecialchars($artiste['nom_art']); ?>
